@@ -68,26 +68,17 @@ now = datetime.datetime.now()
 print(now.strftime('%Y-%m-%d %H:%M:%S %p'))
 print("-----------------")
 
-#add dollar signs in prices
-#make two decimal place for tax and total
-#send email receipt
-
 print("SELECTED PRODUCTS: ") 
 for selected_id in selected_ids:
     matching_products = [p for p in products if str(p["id"]) == str(selected_id)]
     matching_product = matching_products[0]
-      
     subtotal_price = subtotal_price + matching_product["price"]  
-    
-    #subtotal_price = subtotal_price + matching_product["price"]
-    #print("..." + matching_product["name"] + " " + price_usd)
     print("..." + matching_product["name"] + " " + to_usd(matching_product["price"]))
     
 print("-----------------")
 
 print("SUBTOTAL: " + to_usd(subtotal_price))
 
-#price_usd = "${0:.2f}".format(matching_product["price"])
 tax_amount = subtotal_price * 0.0875
 print("TAX: " + to_usd(tax_amount))
 
@@ -98,3 +89,8 @@ print("-----------------")
 print("THANKS, SEE YOU AGAIN SOON!")
 print("-----------------")
 
+# TODO:send email receipt
+import send_email
+address = input("enter email here: ")
+message = "...."
+send_email.send(address, message)
