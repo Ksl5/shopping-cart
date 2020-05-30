@@ -61,7 +61,13 @@ while True:
 
 #print(selected_ids)
 print("-----------------")
-print("SELECTED PRODUCT: ") 
+print("GREEN FOODS GROCERY")
+print("WWW.GREEN-FOODS-GROCERY.COM")
+print("-----------------")
+#check out datetime
+
+print("-----------------")
+print("SELECTED PRODUCTS: ") 
 for selected_id in selected_ids:
     matching_products = [p for p in products if str(p["id"]) == str(selected_id)]
     matching_product = matching_products[0]
