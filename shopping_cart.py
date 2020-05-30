@@ -68,11 +68,12 @@ for selected_id in selected_ids:
     print("SELECTED PRODUCT: ")
     print("..." + matching_product["name"] + " " + str(matching_product["price"]))
     
-
+print("-----------------")
 print("SUBTOTAL: " + str(subtotal_price))
-
 tax_amount = subtotal_price * 0.0875
 print("TAX: " + str(tax_amount))
 total_price = subtotal_price + tax_amount
 print("TOTAL PRICE: " + str(total_price))
-
+print("-----------------")
+print("THANKS, SEE YOU AGAIN SOON!")
+print("-----------------")
