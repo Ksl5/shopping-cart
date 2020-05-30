@@ -64,9 +64,16 @@ print("-----------------")
 print("GREEN FOODS GROCERY")
 print("WWW.GREEN-FOODS-GROCERY.COM")
 print("-----------------")
-#check out datetime
 
+import datetime
+now = datetime.datetime.now()
+#print(str(now))
+print(now.strftime('%Y-%m-%d %H:%M:%S %p'))
 print("-----------------")
+
+#add dollar signs in prices
+#make two decimal place for tax and total
+
 print("SELECTED PRODUCTS: ") 
 for selected_id in selected_ids:
     matching_products = [p for p in products if str(p["id"]) == str(selected_id)]
