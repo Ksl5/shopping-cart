@@ -23,6 +23,7 @@ products = [
     {"id":20, "name": "Pomegranate Cranberry & Aloe Vera Enrich Drink", "department": "beverages", "aisle": "juice nectars", "price": 4.25}
 ] # based on data from Instacart: https://www.instacart.com/datasets/grocery-shopping-2017
 
+#print(products)
 def to_usd(my_price):
     """
     Converts a numeric value to usd-formatted string, for printing and display purposes.
@@ -34,12 +35,9 @@ def to_usd(my_price):
     Returns: $4,000.44
     """
     return f"${my_price:,.2f}" #> $12,000.71
-
-#print(products)
-
 #information capture / input
 
-total_price = 0
+subtotal_price = 0
 selected_ids = []
 
 while True:
@@ -66,8 +64,15 @@ while True:
 for selected_id in selected_ids:
     matching_products = [p for p in products if str(p["id"]) == str(selected_id)]
     matching_product = matching_products[0]
-    total_price = total_price + matching_product["price"]
-    print("SELECTED PRODUCT: " + matching_product["name"] + " " + str(matching_product["price"]))
-        
+    subtotal_price = subtotal_price + matching_product["price"]
+    print("SELECTED PRODUCT: ")
+    print("..." + matching_product["name"] + " " + str(matching_product["price"]))
+    
 
+print("SUBTOTAL: " + str(subtotal_price))
+
+tax_amount = subtotal_price * 0.0875
+print("TAX: " + str(tax_amount))
+total_price = subtotal_price + tax_amount
 print("TOTAL PRICE: " + str(total_price))
+
