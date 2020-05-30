@@ -60,16 +60,21 @@ while True:
 #information display / output
 
 #print(selected_ids)
-
+print("-----------------")
+print("SELECTED PRODUCT: ") 
 for selected_id in selected_ids:
     matching_products = [p for p in products if str(p["id"]) == str(selected_id)]
     matching_product = matching_products[0]
     subtotal_price = subtotal_price + matching_product["price"]
-    print("SELECTED PRODUCT: ")
-    print("..." + matching_product["name"] + " " + str(matching_product["price"]))
     
+    print("..." + matching_product["name"] + " " + str(matching_product["price"]))
+  
 print("-----------------")
 print("SUBTOTAL: " + str(subtotal_price))
+
+def to_usd(tax_amount):
+    return f"${tax_amount:,.2f}"
+
 tax_amount = subtotal_price * 0.0875
 print("TAX: " + str(tax_amount))
 total_price = subtotal_price + tax_amount
@@ -77,3 +82,4 @@ print("TOTAL PRICE: " + str(total_price))
 print("-----------------")
 print("THANKS, SEE YOU AGAIN SOON!")
 print("-----------------")
+
