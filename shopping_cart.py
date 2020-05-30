@@ -1,4 +1,17 @@
 # shopping_cart.py
+import datetime
+
+def to_usd(my_price):
+    """
+    Converts a numeric value to usd-formatted string, for printing and display purposes.
+
+    Param: my_price (int or float) like 4000.444444
+
+    Example: to_usd(4000.444444)
+
+    Returns: $4,000.44
+    """
+    return f"${my_price:,.2f}" #> $12,000.71
 
 products = [
     {"id":1, "name": "Chocolate Sandwich Cookies", "department": "snacks", "aisle": "cookies cakes", "price": 3.50},
@@ -23,20 +36,7 @@ products = [
     {"id":20, "name": "Pomegranate Cranberry & Aloe Vera Enrich Drink", "department": "beverages", "aisle": "juice nectars", "price": 4.25}
 ] # based on data from Instacart: https://www.instacart.com/datasets/grocery-shopping-2017
 
-#print(products)
-def to_usd(my_price):
-    """
-    Converts a numeric value to usd-formatted string, for printing and display purposes.
-
-    Param: my_price (int or float) like 4000.444444
-
-    Example: to_usd(4000.444444)
-
-    Returns: $4,000.44
-    """
-    return f"${my_price:,.2f}" #> $12,000.71
 #information capture / input
-
 subtotal_price = 0
 selected_ids = []
 
@@ -52,8 +52,6 @@ while True:
         
         selected_ids.append(selected_id)
 
-
-
 #print(matching_product)
 #print(type(matching_product))
 
@@ -65,7 +63,6 @@ print("GREEN FOODS GROCERY")
 print("WWW.GREEN-FOODS-GROCERY.COM")
 print("-----------------")
 
-import datetime
 now = datetime.datetime.now()
 #print(str(now))
 print(now.strftime('%Y-%m-%d %H:%M:%S %p'))
@@ -73,25 +70,30 @@ print("-----------------")
 
 #add dollar signs in prices
 #make two decimal place for tax and total
+#send email receipt
 
 print("SELECTED PRODUCTS: ") 
 for selected_id in selected_ids:
     matching_products = [p for p in products if str(p["id"]) == str(selected_id)]
     matching_product = matching_products[0]
-    subtotal_price = subtotal_price + matching_product["price"]
+      
+    subtotal_price = subtotal_price + matching_product["price"]  
     
-    print("..." + matching_product["name"] + " " + str(matching_product["price"]))
-  
+    #subtotal_price = subtotal_price + matching_product["price"]
+    #print("..." + matching_product["name"] + " " + price_usd)
+    print("..." + matching_product["name"] + " " + to_usd(matching_product["price"]))
+    
 print("-----------------")
-print("SUBTOTAL: " + str(subtotal_price))
 
-def to_usd(tax_amount):
-    return f"${tax_amount:,.2f}"
+print("SUBTOTAL: " + to_usd(subtotal_price))
 
+#price_usd = "${0:.2f}".format(matching_product["price"])
 tax_amount = subtotal_price * 0.0875
-print("TAX: " + str(tax_amount))
+print("TAX: " + to_usd(tax_amount))
+
 total_price = subtotal_price + tax_amount
-print("TOTAL PRICE: " + str(total_price))
+print("TOTAL PRICE: " + to_usd(total_price))
+
 print("-----------------")
 print("THANKS, SEE YOU AGAIN SOON!")
 print("-----------------")
